@@ -4,20 +4,27 @@ import "../set.css";
 import CardClass from "../Card/cardClass";
 import CardComponent from "../Card/cardComponent";
 
+enum cardProperties {
+  number = "number",
+  color = "color",
+  shape = "shape",
+  pattern = "pattern",
+}
+
 const Board = () => {
   const counter = useRef(0);
   const unusedCards = useRef<CardClass[]>([]);
   const numbers = [1, 2, 3];
   const colors = ["red", "blueviolet", "chartreuse"];
   const shapes = ["ellipse", "wave", "rohmbus"];
-  const styles = ["full", "striped", "empty"];
+  const patterns = ["full", "striped", "empty"];
   console.log("Board", counter);
 
-  const features: ("number" | "color" | "shape" | "style")[] = [
-    "number",
-    "color",
-    "shape",
-    "style",
+  const features: cardProperties[] = [
+    cardProperties.number,
+    cardProperties.color,
+    cardProperties.shape,
+    cardProperties.pattern,
   ];
 
   const [numSetsFound, setNumSetsFound] = useState(0);
@@ -34,9 +41,9 @@ const Board = () => {
       const number = numbers[i % 3];
       const color = colors[Math.floor(i / 3) % 3];
       const shape = shapes[Math.floor(i / 9) % 3];
-      const style = styles[Math.floor(i / 27) % 3];
+      const pattern = patterns[Math.floor(i / 27) % 3];
       unusedCards.current.push(
-        new CardClass(counter.current++, number, color, shape, style)
+        new CardClass(counter.current++, number, color, shape, pattern)
       );
     }
 
@@ -118,10 +125,7 @@ const Board = () => {
     setNumSetsFound(numSetsFound + 1);
     console.log("set found");
   };
-  const isFeatureGood = (
-    feature: "color" | "number" | "shape" | "style",
-    set: CardClass[]
-  ) => {
+  const isFeatureGood = (feature: cardProperties, set: CardClass[]) => {
     if (
       !(
         set[0][feature] === set[1][feature] &&

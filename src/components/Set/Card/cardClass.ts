@@ -3,7 +3,7 @@ class CardClass {
   number?: number;
   color?: string;
   shape?: string;
-  style?: string;
+  pattern?: string;
   firstColor?: string;
   secondColor?: string;
   isClicked = false;
@@ -13,15 +13,15 @@ class CardClass {
     _number?: number,
     _color?: string,
     _shape?: string,
-    _style?: string
+    pattern?: string
   ) {
     this.id = _id;
     this.number = _number;
     this.color = _color;
     this.shape = _shape;
-    this.style = _style;
-    this.firstColor = _style === "empty" ? "white" : _color;
-    this.secondColor = _style === "full" ? _color : "white";
+    this.pattern = pattern;
+    this.firstColor = pattern === "empty" ? "white" : _color;
+    this.secondColor = pattern === "full" ? _color : "white";
   }
 }
 
