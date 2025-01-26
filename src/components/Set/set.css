@@ -1,0 +1,59 @@
+.setCard {
+  width: 10rem;
+  height: 18rem;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.ellipse {
+  height: 4rem;
+  width: 100%;
+  border-radius: 50rem;
+  box-shadow: 0 0 1rem 0.3rem black;
+}
+
+.wave {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 4rem 0;
+  box-shadow: 0 0 1rem 0.3rem black;
+}
+
+.rohmbus {
+  height: 3.5rem;
+  width: 3.5rem;
+  transform-origin: center;
+  transform: rotate(45deg) skew(340deg, 340deg);
+  box-shadow: 0 0 1rem 0.3rem black;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.dropdown-toggle {
+  color: white;
+  transition: 0.5s;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.menu-container:hover > .dropdown-toggle {
+  color: white;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.menu-item {
+  display: none;
+}
+
+.menu-container:hover > .menu-item {
+  display: unset;
+}
