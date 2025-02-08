@@ -198,8 +198,12 @@ const Board = () => {
     tempBoardCards[random].isHinted = true;
     setBoardCards(tempBoardCards);
     setTimeout(() => {
-      tempBoardCards[random].isHinted = false;
-      setBoardCards(tempBoardCards);
+      setBoardCards((prev) =>
+        prev.map((c, i) => ({
+          ...c,
+          isHinted: i == random ? false : c.isHinted,
+        }))
+      );
     }, 1000);
   };
   return (
