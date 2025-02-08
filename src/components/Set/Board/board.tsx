@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../set.css";
 import CardClass from "../Card/cardClass";
@@ -14,10 +14,10 @@ enum cardProperties {
 const Board = () => {
   const counter = useRef(0);
   const unusedCards = useRef<CardClass[]>([]);
-  const numbers = [1, 2, 3];
-  const colors = ["red", "blueviolet", "chartreuse"];
-  const shapes = ["ellipse", "wave", "rohmbus"];
-  const patterns = ["full", "striped", "empty"];
+  const numbers = useMemo(() => [1, 2, 3], []);
+  const colors = useMemo(() => ["red", "blueviolet", "chartreuse"], []);
+  const shapes = useMemo(() => ["ellipse", "wave", "rohmbus"], []);
+  const patterns = useMemo(() => ["full", "striped", "empty"], []);
   console.log("Board", counter);
 
   const features: cardProperties[] = [
@@ -63,7 +63,7 @@ const Board = () => {
       tempBoardCards.push(unusedCards.current.shift()!);
     }
     setBoardCards(tempBoardCards);
-  }, []);
+  }, [colors, numbers, patterns, shapes]);
 
   const isSet = (set: CardClass[]) => {
     for (let i = 0; i < features.length; i++) {
